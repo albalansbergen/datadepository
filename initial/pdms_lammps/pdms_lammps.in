@@ -1,0 +1,29 @@
+# pdms_lammps
+
+units          real
+atom_style     full
+boundary       p p p
+
+pair_style     lj/long/coul/long  long long 12.0
+pair_modify    mix arithmetic
+dielectric     1.0
+special_bonds  lj 0.000000 0.000000 1.000000 coul 0.000000 0.000000 1.000000
+bond_style     harmonic
+angle_style    harmonic
+dihedral_style charmm
+
+read_data      pdms_lammps.data
+
+fix            2 all qeq/point 1 10 0.000001 100 param.qeq
+kspace_style   pppm/disp 0.0001
+group          mobile union all
+dump           1 all custom 100 pdms_lammps.dump id type q x y z ix iy iz
+dump           2 all custom 100 pdms_lammps.frcdump id fx fy fz
+thermo_style   custom etotal ke pe ebond eangle edihed eimp evdwl ecoul elong temp press
+thermo_modify  line multi
+thermo         100
+thermo_modify  flush yes
+restart        100 pdms_lammps1.rst pdms_lammps2.rst
+min_style      sd
+minimize       0.0001 0.000001 500 5000
+write_restart  pdms_lammps.rst

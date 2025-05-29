@@ -1,0 +1,27 @@
+; Run control parameters
+integrator                = 
+nsteps                    = 
+dt                        = 
+
+; Output control options
+nstlog                    = 
+nstcalcenergy             = 
+nstenergy                 = 
+compressed-x-precision    = 
+
+; Neighbour searching parameters
+cutoff-scheme             = 
+rlist                     = 
+nstlist                   = 
+pbc                       = 
+
+; Options for electrostatics and vdW
+vdwtype                   = 
+rvdw                      = 
+vdw-modifier              = 
+coulombtype               = 
+rcoulomb                  = 
+epsilon-r                 = 
+DispCorr                  = 
+coulomb-modifier          = 
+ewald-geometry            = 
